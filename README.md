@@ -29,7 +29,8 @@ Download and open locally:
 ### Nuclear M&S “Generations” paradigm (draft)
 A first-draft visualization proposing a **GenAI-driven Generation III** layer on top of Generation I (standalone codes) and Generation II (integrated multi-physics frameworks). We posit that the field is entering a transition in which GenAI-enabled, tool-using agents and multimodal knowledge retrieval may act as an ``orchestration layer'' above existing simulation codes and integrated frameworks. In this view, Generation~III does not replace Generation~I/II physics solvers; rather, it augments them by reducing workflow friction (setup, coupling, debugging, post-processing), improving traceability and reproducibility, and enabling human-in-the-loop decision support. As these orchestration capabilities mature, the integrated workflows may expand rapidly, filling gaps that have historically been limited by integration overhead and operational complexity.
 
-- Figure (PNG): `figures/static/png/nuclear_ms_generations_draft_v1.png`
+- [![Nuclear M&S “Generations” paradigm (draft)](figures/static/png/nuclear_ms_generations_draft_v1.png)](figures/static/png/nuclear_ms_generations_draft_v1.png)
+
 ---
 
 ## Repository structure (high-level)
