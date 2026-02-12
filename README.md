@@ -16,10 +16,14 @@ This repository serves as the **public companion hub** for the GenAI-powered nuc
 - The hypothesis is that **tool-using agents + multimodal retrieval** can act as an *orchestration layer* over existing solvers—automating input preparation, execution, post-processing, reporting, and knowledge lookup.
 - This can reduce workflow friction, improve traceability/reproducibility, and strengthen human-in-the-loop decision support as integrated workflows scale.
 
-![Nuclear M&S “Generations” paradigm (draft)](figures/static/png/nuclear_m_and_s_generations.png)
+<!--![Nuclear M&S “Generations” paradigm (draft)](figures/static/png/nuclear_m_and_s_generations.png)-->
+<a href="figures/static/png/nuclear_m_and_s_generations.png" target="_blank" rel="noopener">
+  <img src="figures/static/png/nuclear_m_and_s_generations.png"
+       alt="Nuclear M&S “Generations” paradigm (draft)"
+       width="520">
+</a>
 
 
-<!-- [![Nuclear M&S “Generations” paradigm (draft)](figures/static/png/nuclear_ms_generations_draft_v1.png)](figures/static/png/nuclear_m_and_s_generations.png) -->
 ---
 ## Interactive figures
 
@@ -32,8 +36,11 @@ This repository serves as the **public companion hub** for the GenAI-powered nuc
 <b>Open in browser (GitHub Pages):</b>
 <a href="https://smartlabnuclear.github.io/GenAI-powered-nuclear-ms/figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree.html" target="_blank" rel="noopener">Interactive chart ↗</a>
 
-**Offline use:**  
-- Download the HTML file: [nuclear_ms_tree.html](figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree.html)
+<b>Offline use:</b>
+<a href="https://raw.githubusercontent.com/SmartLabNuclear/GenAI-powered-nuclear-ms/main/figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree.html" download>
+  Download HTML ↧
+</a>
+
 
 **How to use:** 
 - zoom/pan, expand/collapse nodes, and click software nodes to view additional details (links, descriptions, classification tags).
