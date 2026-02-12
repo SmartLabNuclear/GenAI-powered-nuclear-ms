@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+    
+</head>
+<body >
+<div id='chart-wrapper' style='position:relative; width:3600px; height:3600px; overflow:visible;'>
+
+    <div id="legend-box" style="
+        position:absolute;
+        left: 3%;
+        right: 3%;
+        top: 5%;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(0,0,0,0.15);
+        border-radius: 10px;
+        padding: 14px 16px;
+        font-family: Arial, sans-serif;
+        font-size: 36px;
+        line-height: 26px;
+        z-index: 50;
+        ">
+        <style>
+          #legend-box .legend-item {
+            display:flex;
+            gap: 12px;
+            align-items: baseline;
+            break-inside: avoid;
+          }
+          #legend-box .legend-key {
+            font-weight: 900;
+            white-space: nowrap;
+          }
+          #legend-box .legend-text {
+            white-space: normal;
+            overflow-wrap: anywhere;
+          }
+        </style>
+        <div style="font-weight:900; margin-bottom:10px;">Domain legend</div>
+        <div id="legend-grid" style="
+            display:grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: 24px;
+            row-gap: 6px;
+            align-items:start;
+        ">
+            <div class='legend-item'><span class='legend-key'>D01</span><span class='legend-text'>CFD / high-fidelity T/H (often coupled)</span></div>
+<div class='legend-item'><span class='legend-key'>D02</span><span class='legend-text'>Consequence analysis / health physics</span></div>
+<div class='legend-item'><span class='legend-key'>D03</span><span class='legend-text'>Fuel performance / materials</span></div>
+<div class='legend-item'><span class='legend-key'>D04</span><span class='legend-text'>Fuel-cycle/depletion/data processing</span></div>
+<div class='legend-item'><span class='legend-key'>D05</span><span class='legend-text'>Multiphysics / coupling / toolchain</span></div>
+<div class='legend-item'><span class='legend-key'>D06</span><span class='legend-text'>Multiphysics / coupling / workflow</span></div>
+<div class='legend-item'><span class='legend-key'>D07</span><span class='legend-text'>Radiation transport / Deterministic</span></div>
+<div class='legend-item'><span class='legend-key'>D08</span><span class='legend-text'>Radiation transport / Monte Carlo</span></div>
+<div class='legend-item'><span class='legend-key'>D09</span><span class='legend-text'>Reactor physics / core / neutronics</span></div>
+<div class='legend-item'><span class='legend-key'>D10</span><span class='legend-text'>Scientific computing  / pre-post / libraries</span></div>
+<div class='legend-item'><span class='legend-key'>D11</span><span class='legend-text'>System safety &amp; thermal-hydraulics</span></div>
+<div class='legend-item'><span class='legend-key'>D12</span><span class='legend-text'>UQ/SA / PRA (enabling analysis)</span></div>
+<div class='legend-item'><span class='legend-key'>D13</span><span class='legend-text'>Workflow management (HPC / pipelines)</span></div>
+        </div>
+    </div>
+
+    <div id="details-box" style="
+        position:absolute;
+        left: 3%;
+        right: 3%;
+        bottom: 1%;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(0,0,0,0.15);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-family: Arial, sans-serif;
+        font-size: 36px;
+        line-height: 26px;
+        z-index: 50;
+        ">
+        <div style="font-weight:900; margin-bottom:6px;">Software Details</div>
+        <div style="opacity:0.85;">Click a Software node to pin details here (links stay clickable).</div>
+    </div>
+    
+
+    <div id="dfe233fd49ae46f583db1df7f0364bd3" class="chart-container" style="width:3600px; height:3600px; "></div>
+    <script>
+        var chart_dfe233fd49ae46f583db1df7f0364bd3 = echarts.init(
+            document.getElementById('dfe233fd49ae46f583db1df7f0364bd3'), 'white', {renderer: 'canvas', locale: 'ZH'});
+            
+        try {
+          // IMPORTANT: pyecharts injects this JS before `option_dfe233fd49ae46f583db1df7f0364bd3` is defined, so we can't reference it here.
+          // Instead we wait until the chart has an option applied, then patch tooltip behavior via `setOption()`.
+          (function patchTooltipWhenReady(attempt) {
+            try {
+              var c = chart_dfe233fd49ae46f583db1df7f0364bd3;
+              var o = c.getOption && c.getOption();
+              if (!o || !o.series || !o.series.length) {
+                if ((attempt || 0) < 200) setTimeout(function(){ patchTooltipWhenReady((attempt||0)+1); }, 50);
+                return;
+              }
+              c.setOption({
+                tooltip: {
+                  renderMode: 'html',
+                  enterable: true,
+                  triggerOn: 'mousemove',
+                  showDelay: 0,
+                  hideDelay: 60000,
+                  transitionDuration: 0,
+                  confine: true,
+                  appendToBody: true,
+                  extraCssText: 'pointer-events:auto;'
+                }
+              });
+            } catch (e) {
+              if ((attempt || 0) < 200) setTimeout(function(){ patchTooltipWhenReady((attempt||0)+1); }, 50);
+            }
+          })(0);
+
+          function esc(s) {
+            if (s === null || s === undefined) return '';
+            return String(s).replace(/[&<>"']/g, function(c) {
+              return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c] || c;
+            });
+          }
+
+          chart_dfe233fd49ae46f583db1df7f0364bd3.off('click');
+          chart_dfe233fd49ae46f583db1df7f0364bd3.on('click', function(params) {
+            try {
+              var d = (params && params.data) ? params.data : {};
+              var v = d.value || {};
+              var box = document.getElementById('details-box');
+              if (!box) return;
+
+              var name = d.name || '';
+              var fullDomain = v.full_domain || v.domain || '';
+              var toolType = v.tool_type || '';
+              var desc = v.description || '';
+              var link = v.link || '';
+
+              var html = '<div style="font-weight:900; margin-bottom:6px;">Tool details</div>';
+              html += '<div style="font-weight:800;">' + esc(name) + '</div>';
+              if (fullDomain) html += '<div><span style="opacity:0.8; font-weight:700;">Domain:</span> ' + esc(fullDomain) + '</div>';
+              if (toolType) html += '<div><span style="opacity:0.8; font-weight:700;">Availability:</span> ' + esc(toolType) + '</div>';
+              if (desc) html += '<div style="margin-top:6px;">' + esc(desc) + '</div>';
+              if (link) html += '<div style="margin-top:6px;"><a href="' + esc(link) + '" target="_blank" rel="noopener noreferrer">Official link</a></div>';
+
+              box.innerHTML = html;
+            } catch (e) {}
+          });
+        } catch (e) {}
+        
+        var option_dfe233fd49ae46f583db1df7f0364bd3 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "aria": {
+        "enabled": false
+    },
+    "color": [
+        "#5470c6",
+        "#91cc75",
+        "#fac858",
+        "#ee6666",
+        "#73c0de",
+        "#3ba272",
+        "#fc8452",
+        "#9a60b4",
+        "#ea7ccc"
+    ],
+    "series": [
+        {
+            "type": "tree",
+            "data": [
+                {
+                    "name": "N. M&S",
+                    "children": [
+                        {
+                            "name": "D01",
+                            "value": {
+                                "full_domain": "CFD / high-fidelity T/H (often coupled)"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "ANSYS Fluent",
+                                                    "value": {
+                                                        "description": "General-purpose CFD solver for high-fidelity thermal-hydraulics / turbulence / multiphase (industry standard).",
+                                                        "link": "https://www.ansys.com/products/fluids/ansys-fluent",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "CFD / high-fidelity T/H (often coupled)"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "Nek5000",
+                                                    "value": {
+                                                        "description": "High-order CFD code widely used for high-fidelity thermal-hydraulics.",
+                                                        "link": "https://github.com/Nek5000/Nek5000",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "CFD / high-fidelity T/H (often coupled)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "OpenFOAM",
+                                                    "value": {
+                                                        "description": "Open-source CFD toolbox used for custom nuclear thermal-hydraulics and multiphase problems.",
+                                                        "link": "https://openfoam.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "CFD / high-fidelity T/H (often coupled)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SU2",
+                                                    "value": {
+                                                        "description": "Open-source CFD code; can be applied to nuclear flow/heat transfer problems.",
+                                                        "link": "https://su2code.github.io/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "CFD / high-fidelity T/H (often coupled)"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D02",
+                            "value": {
+                                "full_domain": "Consequence analysis / health physics"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "HotSpot",
+                                                    "value": {
+                                                        "description": "Quick assessment tool for radiation dose from nuclear/radiological releases.",
+                                                        "link": "https://narac.llnl.gov/analysis-and-products/hotspot",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Consequence analysis / health physics"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "MACCS",
+                                                    "value": {
+                                                        "description": "Offsite consequence analysis code for atmospheric dispersion and dose/risk metrics.",
+                                                        "link": "https://maccs.sandia.gov/software/maccs",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Consequence analysis / health physics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "RASCAL",
+                                                    "value": {
+                                                        "description": "NRC emergency response code for rapid radiological consequence assessment.",
+                                                        "link": "https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1912/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Consequence analysis / health physics"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D03",
+                            "value": {
+                                "full_domain": "Fuel performance / materials"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Controlled / Licensed",
+                                            "children": [
+                                                {
+                                                    "name": "TRANSURANUS",
+                                                    "value": {
+                                                        "description": "Fuel rod performance code for LWR and fast reactor fuels.",
+                                                        "link": "https://joint-research-centre.ec.europa.eu/transuranus_en",
+                                                        "tool_type": "Controlled / Licensed",
+                                                        "domain": "Fuel performance / materials"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "BISON",
+                                                    "value": {
+                                                        "description": "MOOSE-based fuel performance code for LWR and advanced fuels with multiphysics coupling.",
+                                                        "link": "https://inlsoftware.inl.gov/product/bison",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Fuel performance / materials"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "FRAPCON",
+                                                    "value": {
+                                                        "description": "Fuel performance code for steady-state LWR fuel rod behavior.",
+                                                        "link": "https://fast.labworks.org/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Fuel performance / materials"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MARMOT",
+                                                    "value": {
+                                                        "description": "MOOSE-based mesoscale fuel microstructure evolution model.",
+                                                        "link": "https://mooseframework.inl.gov/ncrc/applications/ncrc_root_marmot.html",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Fuel performance / materials"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D04",
+                            "value": {
+                                "full_domain": "Fuel-cycle/depletion/data processing"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Controlled / Licensed",
+                                            "children": [
+                                                {
+                                                    "name": "FISPACT-II",
+                                                    "value": {
+                                                        "description": "Modern FISPACT generation for activation/inventory with updated libraries.",
+                                                        "link": "https://fispact.ukaea.uk/",
+                                                        "tool_type": "Controlled / Licensed",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "Cyclus",
+                                                    "value": {
+                                                        "description": "Open-source nuclear fuel cycle simulator (agent-based material flow).",
+                                                        "link": "https://github.com/Cyclus/cyclus",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "FRENDY",
+                                                    "value": {
+                                                        "description": "Nuclear data processing code for generating nuclear data libraries.",
+                                                        "link": "https://www.jaea.go.jp/04/np/en/tools/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "NJOY",
+                                                    "value": {
+                                                        "description": "Nuclear data processing system (ENDF \u00e2\u2020\u2019 application libraries).",
+                                                        "link": "https://github.com/njoy/NJOY21",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "MONTEBURNS",
+                                                    "value": {
+                                                        "description": "Couples MCNP with ORIGEN for burnup/depletion analyses.",
+                                                        "link": "https://rsicc.ornl.gov/codes/psr/psr4/psr-455.html",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MURE",
+                                                    "value": {
+                                                        "description": "MCNP-based burnup package coupling transport with evolution/depletion.",
+                                                        "link": "https://www.oecd-nea.org/tools/abstract/detail/nea-1845/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SCALE",
+                                                    "value": {
+                                                        "description": "ORNL code system for criticality, shielding, depletion, and reactor physics.",
+                                                        "link": "https://www.ornl.gov/scale",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Fuel-cycle/depletion/data processing"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D05",
+                            "value": {
+                                "full_domain": "Multiphysics / coupling / toolchain"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "Pronghorn",
+                                                    "value": {
+                                                        "description": "MOOSE app for porous-media/heat transfer flows (used in microreactor/HTGR contexts).",
+                                                        "link": "https://mooseframework.inl.gov/applications/pronghorn/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / toolchain"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "RATTLESNAKE",
+                                                    "value": {
+                                                        "description": "MOOSE-based radiation transport/neutronics solver enabling multiphysics coupling.",
+                                                        "link": "https://mooseframework.inl.gov/applications/rattlesnake/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / toolchain"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D06",
+                            "value": {
+                                "full_domain": "Multiphysics / coupling / workflow"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "Cardinal",
+                                                    "value": {
+                                                        "description": "MOOSE-based coupling of OpenMC with MOOSE for multiphysics Monte Carlo + CFD/HT.",
+                                                        "link": "https://github.com/neams-th-coe/cardinal",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "DAGMC",
+                                                    "value": {
+                                                        "description": "CAD-based geometry toolkit enabling Monte Carlo transport on CAD models (bridges CAD\u00e2\u2020\u201dMC).",
+                                                        "link": "https://github.com/svalinn/DAGMC",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MOOSE",
+                                                    "value": {
+                                                        "description": "Multiphysics finite-element framework used to build coupled nuclear apps (e.g., BISON, Griffin).",
+                                                        "link": "https://github.com/idaholab/moose",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "NEAMS Workbench",
+                                                    "value": {
+                                                        "description": "DOE program delivering integrated modeling & simulation tools and workflows for advanced reactors.",
+                                                        "link": "https://www.energy.gov/ne/nuclear-energy-advanced-modeling-and-simulation-neams",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SHARP",
+                                                    "value": {
+                                                        "description": "ANL toolkit for high-fidelity reactor simulation via multiphysics coupling.",
+                                                        "link": "https://www.anl.gov/mcs/article/sharpening-up-legacy-codes",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "UNIC",
+                                                    "value": {
+                                                        "description": "Coupling framework used in CASL efforts to integrate multiphysics components.",
+                                                        "link": "https://www.anl.gov/article/using-supercomputers-to-explore-nuclear-energy",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "VERA",
+                                                    "value": {
+                                                        "description": "CASL\u00e2\u20ac\u2122s multiphysics environment for high-fidelity LWR analysis and core simulation workflows.",
+                                                        "link": "https://vera.ornl.gov/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "VERA-CS",
+                                                    "value": {
+                                                        "description": "VERA \u00e2\u20ac\u0153common simulator\u00e2\u20ac\u009d integrating neutronics, TH, fuel performance, and CRUD models.",
+                                                        "link": "https://www.ornl.gov/project/vera-cs-high-fidelity-lwr-core-simulator-casl",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Multiphysics / coupling / workflow"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D07",
+                            "value": {
+                                "full_domain": "Radiation transport / Deterministic"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "ATTILA",
+                                                    "value": {
+                                                        "description": "Commercial deterministic transport solver (typically discrete ordinates / deterministic radiation transport).",
+                                                        "link": "https://silverfirsoftware.com/Pages/Products/Attila.php",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Radiation transport / Deterministic"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "PARTISN",
+                                                    "value": {
+                                                        "description": "Deterministic discrete-ordinates (S_N) neutral particle transport solver (widely cited).",
+                                                        "link": "https://inis.iaea.org/records/3h8vq-xgm08",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Radiation transport / Deterministic"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D08",
+                            "value": {
+                                "full_domain": "Radiation transport / Monte Carlo"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "MONK",
+                                                    "value": {
+                                                        "description": "Monte Carlo neutron transport code for criticality safety and reactor physics.",
+                                                        "link": "https://www.answerssoftware.com/monk",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Controlled / Licensed",
+                                            "children": [
+                                                {
+                                                    "name": "FLUKA",
+                                                    "value": {
+                                                        "description": "Monte Carlo particle transport for high-energy interactions, shielding, dosimetry, and activation.",
+                                                        "link": "https://fluka.cern/",
+                                                        "tool_type": "Controlled / Licensed",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "Geant4",
+                                                    "value": {
+                                                        "description": "C++ toolkit for simulating particle\u00e2\u20ac\u201cmatter interactions; widely used for detector and radiation studies.",
+                                                        "link": "https://geant4.web.cern.ch/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "OpenMC",
+                                                    "value": {
+                                                        "description": "Open-source Monte Carlo neutron transport with Python API; used for reactor physics and criticality.",
+                                                        "link": "https://openmc.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "MCNP",
+                                                    "value": {
+                                                        "description": "General-purpose Monte Carlo particle transport for shielding, criticality, and detector response.",
+                                                        "link": "https://mcnp.lanl.gov/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "PHITS",
+                                                    "value": {
+                                                        "description": "General-purpose Monte Carlo for particle/heavy-ion transport and radiation fields.",
+                                                        "link": "https://phits.jaea.go.jp/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SHIFT",
+                                                    "value": {
+                                                        "description": "Monte Carlo radiation transport for reactor analysis and shielding applications.",
+                                                        "link": "https://www.ornl.gov/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Serpent",
+                                                    "value": {
+                                                        "description": "Continuous-energy Monte Carlo reactor physics and burnup/depletion code.",
+                                                        "link": "https://serpent.vtt.fi/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "TRIPOLI-4",
+                                                    "value": {
+                                                        "description": "Monte Carlo transport code used for shielding and reactor physics analyses.",
+                                                        "link": "https://www.cea.fr/english/Pages/technologies/tripoli.aspx",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Radiation transport / Monte Carlo"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D09",
+                            "value": {
+                                "full_domain": "Reactor physics / core / neutronics"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "CASMO",
+                                                    "value": {
+                                                        "description": "Lattice physics code for cross sections and core-follow inputs (commonly LWR).",
+                                                        "link": "https://www.studsvik.com/key-offerings/nuclear-simulation-software/software-products/casmo5/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "HELIOS",
+                                                    "value": {
+                                                        "description": "Lattice physics transport code for generating group constants and depletion.",
+                                                        "link": "https://www.studsvik.com/key-offerings/nuclear-simulation-software/software-products/helios-2/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SIMULATE-3",
+                                                    "value": {
+                                                        "description": "Commercial 3D core simulator used for LWR core design and safety analyses.",
+                                                        "link": "https://support.studsvikscandpower.com/hc/en-us/categories/360002135513-SIMULATE",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "WIMS",
+                                                    "value": {
+                                                        "description": "Lattice physics code for cell calculations and cross-section generation.",
+                                                        "link": "https://www.answerssoftware.com/wims",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Controlled / Licensed",
+                                            "children": [
+                                                {
+                                                    "name": "PARCS",
+                                                    "value": {
+                                                        "description": "3D nodal diffusion/kinetics core simulator often coupled to system codes for transients.",
+                                                        "link": "https://engineering.purdue.edu/PARCS",
+                                                        "tool_type": "Controlled / Licensed",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "DRAGON",
+                                                    "value": {
+                                                        "description": "Deterministic lattice code for reactor physics cross sections.",
+                                                        "link": "https://www.polymtl.ca/merlin/dragon/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "APOLLO2",
+                                                    "value": {
+                                                        "description": "Deterministic reactor physics code for lattice/core calculations and cross-section processing.",
+                                                        "link": "https://www.cristal-package.org/docs/apollo/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "DIF3D",
+                                                    "value": {
+                                                        "description": "Deterministic reactor physics code for fast reactor analysis (diffusion/transport methods).",
+                                                        "link": "https://www.anl.gov/nse/dif3d",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "DYN3D",
+                                                    "value": {
+                                                        "description": "3D core simulator for LWR analysis (nodal methods) used for steady-state and transient studies.",
+                                                        "link": "https://www.dyn3d.de/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "ERANOS",
+                                                    "value": {
+                                                        "description": "Fast reactor physics code system integrating deterministic methods and fuel-cycle-related analyses.",
+                                                        "link": "https://rsicc.ornl.gov/codes/ccc/ccc7/ccc-745.html",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Griffin",
+                                                    "value": {
+                                                        "description": "MOOSE-based neutronics application (reactor physics) for coupled simulations.",
+                                                        "link": "https://mooseframework.inl.gov/applications/griffin/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MAMMOTH",
+                                                    "value": {
+                                                        "description": "MOOSE-based reactor physics application (historically Rattlesnake-based) for multiphysics.",
+                                                        "link": "https://mooseframework.inl.gov/applications/mammoth/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MC2-3",
+                                                    "value": {
+                                                        "description": "Cross-section generation code (fast reactor spectrum, multigroup constants).",
+                                                        "link": "https://www.anl.gov/nse/mc23",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "NESTLE",
+                                                    "value": {
+                                                        "description": "Nodal diffusion code for reactor core calculations and kinetics.",
+                                                        "link": "https://rsicc.ornl.gov/Catalog.aspx?c=N",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Reactor physics / core / neutronics"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D10",
+                            "value": {
+                                "full_domain": "Scientific computing  / pre-post / libraries"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "Dymola",
+                                                    "value": {
+                                                        "description": "Commercial Modelica-based modeling and simulation environment.",
+                                                        "link": "https://www.3ds.com/products-services/catia/products/dymola/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Simulink",
+                                                    "value": {
+                                                        "description": "Block-diagram modeling environment; used for control-oriented reactor/digital-twin models.",
+                                                        "link": "https://www.mathworks.com/products/simulink.html",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "DUNE",
+                                                    "value": {
+                                                        "description": "C++ framework for solving PDEs; general-purpose multiphysics infrastructure.",
+                                                        "link": "https://www.dune-project.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Kratos",
+                                                    "value": {
+                                                        "description": "Open-source multiphysics framework used across engineering domains.",
+                                                        "link": "https://github.com/KratosMultiphysics/Kratos",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Modelica",
+                                                    "value": {
+                                                        "description": "Equation-based modeling language used for multi-domain physical systems.",
+                                                        "link": "https://modelica.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "OpenModelica",
+                                                    "value": {
+                                                        "description": "Open-source Modelica environment for system modeling and simulation.",
+                                                        "link": "https://openmodelica.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "PETSc",
+                                                    "value": {
+                                                        "description": "Portable solvers for PDEs/linear algebra; common backbone for simulation codes.",
+                                                        "link": "https://github.com/petsc/petsc",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "PyMOR",
+                                                    "value": {
+                                                        "description": "Model order reduction library (general-purpose) usable for reduced-order nuclear models.",
+                                                        "link": "https://pymor.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "PyNE",
+                                                    "value": {
+                                                        "description": "Python toolkit for nuclear engineering data, depletion utilities, and workflow scripting.",
+                                                        "link": "https://pyne.io/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SALOME",
+                                                    "value": {
+                                                        "description": "Open-source platform for geometry/meshing and simulation workflow integration.",
+                                                        "link": "https://www.salome-platform.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Trilinos",
+                                                    "value": {
+                                                        "description": "Scientific computing libraries for solvers and multiphysics infrastructure (used by many frameworks).",
+                                                        "link": "https://github.com/trilinos/Trilinos",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "serpenttools",
+                                                    "value": {
+                                                        "description": "Python package to parse and analyze Serpent outputs.",
+                                                        "link": "https://github.com/CORE-GATECH-GROUP/serpent-tools",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "Sierra",
+                                                    "value": {
+                                                        "description": "Sandia multiphysics engineering framework (general-purpose, used in some nuclear work).",
+                                                        "link": "https://www.sandia.gov/sierra/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "Scientific computing  / pre-post / libraries"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D11",
+                            "value": {
+                                "full_domain": "System safety & thermal-hydraulics"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "ATHLET",
+                                                    "value": {
+                                                        "description": "System thermal-hydraulics code for transient/accident analysis and safety studies.",
+                                                        "link": "https://www.grs.de/en/athlet",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "CATHARE",
+                                                    "value": {
+                                                        "description": "System thermal-hydraulics code for accident and transient analysis (notably PWR).",
+                                                        "link": "https://www.cathare.fr/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "GOTHIC",
+                                                    "value": {
+                                                        "description": "Containment thermal-hydraulics code for containment response analysis.",
+                                                        "link": "https://www.gothic.co/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MAAP",
+                                                    "value": {
+                                                        "description": "Integral severe accident / system safety analysis code for plant-level transient and accident progression studies.",
+                                                        "link": "https://www.epri.com/research/products/3002007467",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "COBRA-TF",
+                                                    "value": {
+                                                        "description": "Subchannel thermal-hydraulics code for LWR core and fuel assembly analyses.",
+                                                        "link": "https://ne.ncsu.edu/rdfmg/cobra-tf/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "CONTAIN",
+                                                    "value": {
+                                                        "description": "Legacy containment/severe-accident analysis code (historical predecessor in some workflows).",
+                                                        "link": "https://www.sandia.gov/research/publications/details/code-manual-for-contain-2-0-a-computer-code-for-nuclear-reactor-containment-1997-12-01/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "CTF",
+                                                    "value": {
+                                                        "description": "Modern COBRA-TF variant used in multiphysics toolchains for subchannel analysis.",
+                                                        "link": "https://vera.ornl.gov/ctf/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MARS-KS",
+                                                    "value": {
+                                                        "description": "System thermal-hydraulics code for reactor transient and safety analyses.",
+                                                        "link": "https://www.kaeri.re.kr/eng/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "MELCOR",
+                                                    "value": {
+                                                        "description": "Integrated severe accident code for source term and progression analysis.",
+                                                        "link": "https://www.sandia.gov/MELCOR/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "RELAP-7",
+                                                    "value": {
+                                                        "description": "Modern system thermal-hydraulics code; built on MOOSE but executed as its own application.",
+                                                        "link": "https://inlsoftware.inl.gov/product/relap-7",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "RELAP5",
+                                                    "value": {
+                                                        "description": "System thermal-hydraulics code for LWR and system transient/accident analysis.",
+                                                        "link": "https://relap.inl.gov/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SAM",
+                                                    "value": {
+                                                        "description": "System Analysis Module for advanced reactors (liquid metal, salts, etc.) and transient analysis.",
+                                                        "link": "https://www.ne.anl.gov/codes/sam/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SAS4A/SASSYS-1",
+                                                    "value": {
+                                                        "description": "Fast reactor safety analysis suite for transient and accident scenarios.",
+                                                        "link": "https://www.anl.gov/nse/sas",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SASSYS-1",
+                                                    "value": {
+                                                        "description": "System dynamics/safety analysis for liquid-metal fast reactors (part of SAS4A/SASSYS).",
+                                                        "link": "https://www.anl.gov/nse/sas",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SIMMER",
+                                                    "value": {
+                                                        "description": "Severe accident code for sodium fast reactors (core disruptive accident modeling).",
+                                                        "link": "https://www.jaea.go.jp/english/",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "TRACE",
+                                                    "value": {
+                                                        "description": "NRC best-estimate system code for reactor thermal-hydraulics and safety analysis.",
+                                                        "link": "https://www.nrccodes.com/Home/default.aspx",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "System safety & thermal-hydraulics"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D12",
+                            "value": {
+                                "full_domain": "UQ/SA / PRA (enabling analysis)"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Commercial / Proprietary",
+                                            "children": [
+                                                {
+                                                    "name": "RiskSpectrum",
+                                                    "value": {
+                                                        "description": "Commercial PSA/PRA tool for probabilistic safety assessment.",
+                                                        "link": "https://www.riskspectrum.com/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "UQ/SA / PRA (enabling analysis)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SUSA",
+                                                    "value": {
+                                                        "description": "GRS tool for sensitivity and uncertainty analysis in reactor safety applications.",
+                                                        "link": "https://www.grs.de/en/",
+                                                        "tool_type": "Commercial / Proprietary",
+                                                        "domain": "UQ/SA / PRA (enabling analysis)"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "Dakota",
+                                                    "value": {
+                                                        "description": "Toolkit for UQ, optimization, and sensitivity analysis; often wraps external simulation codes.",
+                                                        "link": "https://dakota.sandia.gov/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "UQ/SA / PRA (enabling analysis)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "RAVEN",
+                                                    "value": {
+                                                        "description": "INL framework for risk analysis, UQ, and control logic; interfaces with system codes.",
+                                                        "link": "https://github.com/idaholab/raven",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "UQ/SA / PRA (enabling analysis)"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "Restricted / Gov / Export",
+                                            "children": [
+                                                {
+                                                    "name": "SAPHIRE",
+                                                    "value": {
+                                                        "description": "PRA software used for reliability and risk assessments.",
+                                                        "link": "https://www.nrc.gov/about-nrc/regulatory/research/saphire.html",
+                                                        "tool_type": "Restricted / Gov / Export",
+                                                        "domain": "UQ/SA / PRA (enabling analysis)"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "D13",
+                            "value": {
+                                "full_domain": "Workflow management (HPC / pipelines)"
+                            },
+                            "children": [
+                                {
+                                    "label": {
+                                        "show": false
+                                    },
+                                    "tooltip": {
+                                        "show": false
+                                    },
+                                    "symbolSize": 1,
+                                    "children": [
+                                        {
+                                            "name": "Open / Public",
+                                            "children": [
+                                                {
+                                                    "name": "AiiDA",
+                                                    "value": {
+                                                        "description": "Workflow manager with provenance tracking for computational science.",
+                                                        "link": "https://www.aiida.net/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "FireWorks",
+                                                    "value": {
+                                                        "description": "Workflow engine for high-throughput computational campaigns.",
+                                                        "link": "https://github.com/materialsproject/fireworks",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Nextflow",
+                                                    "value": {
+                                                        "description": "Workflow system for scalable pipelines (general-purpose).",
+                                                        "link": "https://www.nextflow.io/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Parsl",
+                                                    "value": {
+                                                        "description": "Python parallel scripting library for composing workflows (general-purpose).",
+                                                        "link": "https://parsl-project.org/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Pegasus",
+                                                    "value": {
+                                                        "description": "Scientific workflow management system (general-purpose).",
+                                                        "link": "https://pegasus.isi.edu/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "SLURM",
+                                                    "value": {
+                                                        "description": "Workload manager/job scheduler used to launch and manage simulations on HPC clusters.",
+                                                        "link": "https://slurm.schedmd.com/",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "Snakemake",
+                                                    "value": {
+                                                        "description": "Workflow engine for reproducible pipelines (general-purpose).",
+                                                        "link": "https://github.com/snakemake/snakemake",
+                                                        "tool_type": "Open / Public",
+                                                        "domain": "Workflow management (HPC / pipelines)"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "left": "6%",
+            "right": "6%",
+            "top": "20%",
+            "bottom": "8%",
+            "zoom": 1,
+            "symbol": "emptyCircle",
+            "symbolSize": 7,
+            "edgeShape": "curve",
+            "edgeForkPosition": "50%",
+            "roam": false,
+            "expandAndCollapse": true,
+            "initialTreeDepth": 4,
+            "layout": "radial",
+            "label": {
+                "show": true,
+                "margin": 8,
+                "formatter": function(p){return '{T|' + p.name + '}';},
+                "rich": {
+                    "T": {
+                        "fontSize": 40
+                    }
+                },
+                "valueAnimation": false
+            },
+            "leaves": {
+                "label": {
+                    "show": true,
+                    "margin": 8,
+                    "formatter": function(p){return '{T|' + p.name + '}';},
+                    "rich": {
+                        "T": {
+                            "fontSize": 40
+                        }
+                    },
+                    "valueAnimation": false
+                }
+            },
+            "emphasis": {
+                "focus": "descendant"
+            },
+            "selectedMode": false,
+            "radius": "88%",
+            "animationDurationUpdate": 750,
+            "levels": [
+                {
+                    "label": {
+                        "color": "#111111",
+                        "fontSize": 40
+                    }
+                },
+                {
+                    "label": {
+                        "color": "#1f77b4",
+                        "fontSize": 40,
+                        "position": "inside",
+                        "align": "center",
+                        "verticalAlign": "middle",
+                        "rotate": 0,
+                        "backgroundColor": "#ffffff",
+                        "padding": [
+                            2,
+                            4
+                        ],
+                        "borderRadius": 4
+                    }
+                },
+                {
+                    "label": {
+                        "show": false
+                    }
+                },
+                {
+                    "label": {
+                        "color": "#2ca02c",
+                        "fontSize": 40,
+                        "rotate": 0
+                    }
+                },
+                {
+                    "label": {
+                        "color": "#444444",
+                        "fontSize": 40,
+                        "rotate": 0
+                    }
+                }
+            ]
+        }
+    ],
+    "legend": [
+        {
+            "data": [],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14,
+            "backgroundColor": "transparent",
+            "borderColor": "#ccc",
+            "borderRadius": 0,
+            "pageButtonItemGap": 5,
+            "pageButtonPosition": "end",
+            "pageFormatter": "{current}/{total}",
+            "pageIconColor": "#2f4554",
+            "pageIconInactiveColor": "#aaa",
+            "pageIconSize": 15,
+            "animationDurationUpdate": 800,
+            "selector": false,
+            "selectorPosition": "auto",
+            "selectorItemGap": 7,
+            "selectorButtonGap": 10
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "enterable": false,
+        "confine": false,
+        "appendToBody": false,
+        "transitionDuration": 0.4,
+        "formatter": function (info) {  var d = info.data || {};  var v = d.value || {};  var name = d.name || '';  var fullDomain = v.full_domain || v.domain || '';  var html = '<div style=\"max-width:620px; white-space:normal; font-size:24px;\">'           + '<b>' + name + '</b>';  if (fullDomain) html += '<br/><span style=\"opacity:0.8; font-weight:700;\">Domain:</span> ' + fullDomain;  if (v.tool_type) html += '<br/><span style=\"opacity:0.8; font-weight:700;\">Availability:</span> ' + v.tool_type;  if (v.description) html += '<br/><br/>' + v.description;  if (v.link) html += '<br/><br/><a href=\"' + v.link + '\" target=\"_blank\" rel=\"noopener noreferrer\">Official link</a>';  html += '</div>';  return html;},
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5,
+        "order": "seriesAsc"
+    },
+    "title": [
+        {
+            "show": true,
+            "text": "Nuclear M&S Taxonomy",
+            "target": "blank",
+            "subtext": "Domain \u2192 Availability \u2192 Software Product",
+            "subtarget": "blank",
+            "padding": 5,
+            "itemGap": 10,
+            "textAlign": "auto",
+            "textVerticalAlign": "auto",
+            "triggerEvent": false,
+            "textStyle": {
+                "fontSize": 40
+            },
+            "subtextStyle": {
+                "fontSize": 40
+            }
+        }
+    ]
+};
+        chart_dfe233fd49ae46f583db1df7f0364bd3.setOption(option_dfe233fd49ae46f583db1df7f0364bd3);
+    </script>
+
+</div>
+</body>
+</html>
