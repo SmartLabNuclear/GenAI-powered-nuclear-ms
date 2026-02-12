@@ -36,10 +36,12 @@ This repository serves as the **public companion hub** for the GenAI-powered nuc
 <b>Open in browser (GitHub Pages):</b>
 <a href="https://smartlabnuclear.github.io/GenAI-powered-nuclear-ms/figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree.html" target="_blank" rel="noopener">Interactive chart ↗</a>
 
+<!--
 <b>Offline use:</b>
 <a href="https://raw.githubusercontent.com/SmartLabNuclear/GenAI-powered-nuclear-ms/main/figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree.html" download>
   Download HTML ↧
 </a>
+-->
 
 
 **How to use:** 
