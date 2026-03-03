@@ -34,7 +34,7 @@ This repository serves as the **public companion hub** for the GenAI-powered nuc
 
 <!--**Open in browser (GitHub Pages):**--> 
 <b>Open in browser (GitHub Pages):</b>
-<a href="https://smartlabnuclear.github.io/GenAI-powered-nuclear-ms/figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree.html" target="_blank" rel="noopener">Interactive chart ↗</a>
+<a href="https://smartlabnuclear.github.io/GenAI-powered-nuclear-ms/figures/interactive/nuclear-ms-taxonomy/nuclear_ms_tree_radial_updated.html" target="_blank" rel="noopener">Interactive chart ↗</a>
 
 <!--
 <b>Offline use:</b>
