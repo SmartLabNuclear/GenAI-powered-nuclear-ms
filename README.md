@@ -58,12 +58,11 @@ This repository serves as the **public companion hub** for the GenAI-powered nuc
 
 These systems are core artifacts of the GenAI-powered nuclear M&S paradigm and are maintained in dedicated repositories:
 
-- **AutoFLUKA** — GenAI-assisted Monte Carlo workflow orchestration *(link to be added)*
-- **AutoSAM** — autonomous system TH workflow + error detection/resolution *(link to be added)*
-- **RADIANT-LLM** — multimodal nuclear knowledge base + evaluation *(link to be added)*
+- **AutoFLUKA** — GenAI-assisted Monte Carlo workflow orchestration: [SmartLabNuclear/AutoFLUKA](https://github.com/SmartLabNuclear/AutoFLUKA)
+- **AutoSAM** — autonomous system TH workflow + error detection/resolution: methodology, test cases and evaluation record in [SmartLabNuclear/AutoSAM-paper](https://github.com/SmartLabNuclear/AutoSAM-paper) (documentation and data only; the software itself is distributed separately)
+- **RADIANT-LLM** — multimodal nuclear knowledge base + evaluation: [SmartLabNuclear/RADIANT_LLM](https://github.com/SmartLabNuclear/RADIANT_LLM)
 - **AROMA-GPT** — digital-twin supervisory assistant (human-in-the-loop) *(link to be added)*
 
-> If you share the repo URLs, you can replace “(link to be added)” with the direct links.
 
 ---
 
