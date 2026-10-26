@@ -61,7 +61,7 @@ These systems are core artifacts of the GenAI-powered nuclear M&S paradigm and a
 - **AutoFLUKA** — GenAI-assisted Monte Carlo workflow orchestration: [SmartLabNuclear/AutoFLUKA](https://github.com/SmartLabNuclear/AutoFLUKA)
 - **AutoSAM** — autonomous system TH workflow + error detection/resolution, in two parts:
   - *Part 1: input-file generation (authored by Zaid)* — methodology, test cases and evaluation record in [SmartLabNuclear/AutoSAM-paper](https://github.com/SmartLabNuclear/AutoSAM-paper) (documentation and data only).
-  - *Part 2: the end-to-end simulation framework* — source code in [SmartLabNuclear/AutoSAM](https://github.com/SmartLabNuclear/AutoSAM/tree/ongoing-dev) (`ongoing-dev` branch) and the ready-to-run distribution (no source needed) in [AutoSAM_Exe](https://github.com/zavierndum/AutoSAM_Exe). *Both are private for now and will be opened with the paper's publication.*
+  - *Part 2: the end-to-end simulation framework* — source code in [SmartLabNuclear/AutoSAM](https://github.com/SmartLabNuclear/AutoSAM/tree/ongoing-dev) (`ongoing-dev` branch) and the ready-to-run distribution (no source needed) in [SmartLabNuclear/AutoSAM_Exe](https://github.com/SmartLabNuclear/AutoSAM_Exe). *Both are private for now and will be opened with the paper's publication.*
 - **RADIANT-LLM** — multimodal nuclear knowledge base + evaluation: [SmartLabNuclear/RADIANT_LLM](https://github.com/SmartLabNuclear/RADIANT_LLM)
 - **AROMA-GPT** — digital-twin supervisory assistant (human-in-the-loop) *(link to be added)*
 
